@@ -1,19 +1,19 @@
 public class Kata {
     public static String createPhoneNumber(int[] numbers) {
         // Your code here!
-        String PhoneNumber = "";
+        StringBuilder PhoneNumber = new StringBuilder();
         for (int i = 0; i < 10; i++) {
             if (i == 0) {
-                PhoneNumber += "(";
+                PhoneNumber.append("(");
             } else if (i == 3) {
-                PhoneNumber += ") ";
+                PhoneNumber.append(") ");
             } else if (i == 6) {
-                PhoneNumber += "-";
+                PhoneNumber.append("-");
             }
-            PhoneNumber += numbers[i];
+            PhoneNumber.append(numbers[i]);
         }
 
-        return PhoneNumber;
+        return PhoneNumber.toString();
 
     }
 
