@@ -10,4 +10,8 @@ public class SmallestIntegerFinder {
         return smallest;
 
     }
+
+    public static void main(String[] args) {
+
+    }
 }

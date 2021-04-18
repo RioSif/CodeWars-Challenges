@@ -27,4 +27,8 @@ public class DescendingOrder {
 
         return numsorted;
     }
+
+    public static void main(String[] args) {
+
+    }
 }

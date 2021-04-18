@@ -16,4 +16,8 @@ public class Calculate {
 
         return result;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
