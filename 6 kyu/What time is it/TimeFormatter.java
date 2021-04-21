@@ -4,9 +4,7 @@ public class TimeFormatter {
 
     public static String toHumanTime(String time) {
         // TODO: Code me!
-        String[] hoursNumberToWord = {"twelve", "one", "two", "three", "four", "five",
-                "six", "seven", "eight", "nine", "ten", "eleven"};
-        String[] minutesNumberToWord = {"zero", "one", "two", "three", "four", "five",
+        String[] NumberToWord = {"twelve", "one", "two", "three", "four", "five",
                 "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
                 "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
         String[] preposition = {"o'clock", "quarter", "past", "half", "to", "minute", "minutes"};
@@ -18,48 +16,44 @@ public class TimeFormatter {
         StringBuilder timeString = new StringBuilder();
         switch (minutes) {
             case 0:
-                timeString.append(hoursNumberToWord[hours]).append(" ").append(preposition[0]);
-                break;
+                timeString.append(NumberToWord[hours]).append(" ").append(preposition[0]);
+            break;
+            case 1:
+                timeString.append(NumberToWord[minutes]).append(" ").append(preposition[5]).append(" ").append(preposition[2]).append(" ").append(NumberToWord[hours]);
+            break;
             case 15:
-                timeString.append(preposition[1]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
-                break;
+                timeString.append(preposition[1]).append(" ").append(preposition[2]).append(" ").append(NumberToWord[hours]);
+            break;
             case 30:
-                timeString.append(preposition[3]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
-                break;
+                timeString.append(preposition[3]).append(" ").append(preposition[2]).append(" ").append(NumberToWord[hours]);
+            break;
             case 45:
-                timeString.append(preposition[1]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
-                break;
+                timeString.append(preposition[1]).append(" ").append(preposition[4]).append(" ").append(NumberToWord[hours + 1]);
+            break;
+            case 59:
+                minutes = (minutes - 60) * -1;
+                timeString.append(NumberToWord[minutes]).append(" ").append(preposition[5]).append(" ").append(preposition[4]).append(" ").append(NumberToWord[hours + 1]);
+            break;
             default:
-                if (minutes == 1 || ((minutes - 60) * -1) == 1) {
-                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[5]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
-                } else {
-                    minutes = (minutes - 60) * -1;
-                    timeString.append(minutesNumberToWord[minutes / 10 * 10]).append("-").append(minutesNumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
-                }
-                else if (minutes <= 20) {
-                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
+                if (minutes <= 20) {
+                    timeString.append(NumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[2]).append(" ").append(NumberToWord[hours]);
                 } else if (minutes < 30) {
-                    timeString.append(minutesNumberToWord[minutes / 10 * 10]).append("-").append(minutesNumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
+                    timeString.append(NumberToWord[minutes / 10 * 10]).append("-").append(NumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[2]).append(" ").append(NumberToWord[hours]);
                 } else if (minutes >= 40){
                     minutes = (minutes - 60) * -1;
-                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
+                    timeString.append(NumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(NumberToWord[hours + 1]);
                 } else {
                     minutes = (minutes - 60) * -1;
-                    timeString.append(minutesNumberToWord[minutes / 10 * 10]).append("-").append(minutesNumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
+                    timeString.append(NumberToWord[minutes / 10 * 10]).append("-").append(NumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(NumberToWord[hours + 1]);
                 }
-
         }
 
-        String timeIs = timeString.toString();
-        return timeIs;
+        return timeString.toString();
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String inputTime = sc.nextLine();
         System.out.println(toHumanTime(inputTime));
-
-
-
     }
 }
