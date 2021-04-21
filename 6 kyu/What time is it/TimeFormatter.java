@@ -27,21 +27,25 @@ public class TimeFormatter {
                 timeString.append(preposition[3]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
                 break;
             case 45:
-                timeString.append(preposition[1]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours]);
+                timeString.append(preposition[1]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
                 break;
             default:
-                if (minutes == 1) {
-                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[5]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours]);
-                } else if (minutes <= 20) {
-                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours]);
-                } else if (minutes < 30) {
-                    timeString.append(minutesNumberToWord[minutes / 10 * 10]).append("-").append(minutesNumberToWord[minutes % 10]).append(" ").append(preposition[5]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours]);
-                } else if (minutes >= 40){
-                    minutes -= -60;
-                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours]);
+                if (minutes == 1 || ((minutes - 60) * -1) == 1) {
+                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[5]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
                 } else {
-                    minutes -= -60;
-                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours]);
+                    minutes = (minutes - 60) * -1;
+                    timeString.append(minutesNumberToWord[minutes / 10 * 10]).append("-").append(minutesNumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
+                }
+                else if (minutes <= 20) {
+                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
+                } else if (minutes < 30) {
+                    timeString.append(minutesNumberToWord[minutes / 10 * 10]).append("-").append(minutesNumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[2]).append(" ").append(hoursNumberToWord[hours]);
+                } else if (minutes >= 40){
+                    minutes = (minutes - 60) * -1;
+                    timeString.append(minutesNumberToWord[minutes]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
+                } else {
+                    minutes = (minutes - 60) * -1;
+                    timeString.append(minutesNumberToWord[minutes / 10 * 10]).append("-").append(minutesNumberToWord[minutes % 10]).append(" ").append(preposition[6]).append(" ").append(preposition[4]).append(" ").append(hoursNumberToWord[hours + 1]);
                 }
 
         }
