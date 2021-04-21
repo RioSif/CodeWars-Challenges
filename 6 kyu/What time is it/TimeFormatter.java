@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+// ***
+// What time is it?
+// https://www.codewars.com/kata/596218bb6878a33ca20000aa/
+// ***
+
 public class TimeFormatter {
 
     public static String toHumanTime(String time) {
