@@ -4,29 +4,32 @@ class FactDecomp {
 
     public static String decomp(int n) {
         // your code
-        int[] result = new int[n + 1];
+        int[] array = new int[n + 1];
+
         for (int i = 2; i <= n; i++) {
             int temp = i;
             for (int j = 2; j <= i; j++) {
-
                 while (temp % j == 0) {
-                    result[j]++;
+                    array[j]++;
                     temp /= j;
                 }
                 if (temp == 0 || temp == 1) {
                     break;
                 }
             }
-            if (temp == 0 || temp == 1) {
-                break;
+        }
+
+        int count = 0;
+        StringBuilder result = new StringBuilder();
+        for (int c : array) {
+            if (c != 0) {
+                result.append(count == 2 ? "" : " * ").append(count).append(c > 1 ? "^" : "").append(c > 1 ? c : "");
+
             }
+            count++;
         }
 
-
-        for (int c: result) {
-            System.out.print(c + " ");
-        }
-        return "";
+        return String.valueOf(result);
     }
 
     public static void main(String[] args) {
