@@ -6,7 +6,7 @@ public class ProdFib { // must be public for codewars
         // your code
         int n = 1;
         long[] result = {0, 0, 0};
-        long fProd;
+        long fProd = Long.MAX_VALUE;
         long fibN0 = 0;
         long fibN = 1;
         long fibN1;
@@ -36,6 +36,7 @@ public class ProdFib { // must be public for codewars
 
         return (f[num - 1] + f[num - 2]) ;
     }
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

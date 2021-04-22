@@ -2,28 +2,28 @@ import java.util.Scanner;
 
 class FactDecomp {
 
-    public static long factorial(int n) {
-        long[] result = new long[n + 1];
-        result[1] = 1;
-        for (int i = 2; i <= n; i++) {
-            result[i] = result[i - 1] * i;
-        }
-        return result[n];
-    }
-
     public static String decomp(int n) {
         // your code
-        long factorial = factorial(n);
-        int[] divider = new int[n];
-        for (int i = 2; i < n; i++) {
-            divider[i] = 0;
-            while (factorial % i == 0 && (factorial != 1 || factorial != 0)) {
-                factorial /= i;
-                divider[i]++;
+        int[] result = new int[n + 1];
+        for (int i = 2; i <= n; i++) {
+            int temp = i;
+            for (int j = 2; j <= i; j++) {
+
+                while (temp % j == 0) {
+                    result[j]++;
+                    temp /= j;
+                }
+                if (temp == 0 || temp == 1) {
+                    break;
+                }
+            }
+            if (temp == 0 || temp == 1) {
+                break;
             }
         }
 
-        for (int c: divider) {
+
+        for (int c: result) {
             System.out.print(c + " ");
         }
         return "";
