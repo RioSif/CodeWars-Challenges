@@ -4,9 +4,7 @@ public class DRoot {
     public static int digital_root(int n) {
         int sum = 0;
 
-        sum = (sum += n % 10 + n / 10) > 9 ? digital_root(sum) : sum;
-
-        return sum;
+        return (sum += n % 10 + n / 10) > 9 ? digital_root(sum) : sum;
     }
 
     public static void main(String[] args) {
