@@ -8,7 +8,9 @@ public class Main {
         while (true) {
             System.out.print("Enter the number of seconds to convert: ");
             String seconds = scanner.nextLine();
+
             System.out.println(TimeFormatter.formatDuration(Integer.parseInt(seconds)));
+
         }
     }
 }
