@@ -4,7 +4,7 @@ public class TimeFormatter {
         // your code goes here
 
         if (seconds == 0) {
-            return "Now";
+            return "now";
         }
 
         int years = seconds / 31536000;
@@ -38,12 +38,8 @@ public class TimeFormatter {
             } else {
                 sb.append(years).append(" year");
             }
+            sb.append(numberOfItems(count));
             count--;
-            if (count > 1) {
-                sb.append(", ");
-            } else if (count == 1) {
-                sb.append(" and ");
-            }
         }
         if (days > 0) {
             if (days > 1) {
@@ -51,12 +47,9 @@ public class TimeFormatter {
             } else {
                 sb.append(days).append(" day");
             }
+            sb.append(numberOfItems(count));
             count--;
-            if (count > 1) {
-                sb.append(", ");
-            } else if (count == 1) {
-                sb.append(" and ");
-            }
+
         }
         if (hours > 0) {
             if (hours > 1) {
@@ -64,12 +57,8 @@ public class TimeFormatter {
             } else {
                 sb.append(hours).append(" hour");
             }
+            sb.append(numberOfItems(count));
             count--;
-            if (count > 1) {
-                sb.append(", ");
-            } else if (count == 1) {
-                sb.append(" and ");
-            }
         }
         if (minutes > 0) {
             if (minutes > 1) {
@@ -77,12 +66,8 @@ public class TimeFormatter {
             } else {
                 sb.append(minutes).append(" minute");
             }
+            sb.append(numberOfItems(count));
             count--;
-            if (count > 1) {
-                sb.append(", ");
-            } else if (count == 1) {
-                sb.append(" and ");
-            }
         }
         if (rseconds > 0) {
             if (rseconds > 1) {
@@ -90,14 +75,19 @@ public class TimeFormatter {
             } else {
                 sb.append(rseconds).append(" second");
             }
+            sb.append(numberOfItems(count));
             count--;
-            if (count > 1) {
-                sb.append(", ");
-            } else if (count == 1) {
-                sb.append(" and ");
-            }
 
         }
         return sb.toString();
+    }
+
+    public static String numberOfItems(int count) {
+        if (count > 2) {
+            return ", ";
+        } else if (count == 2) {
+            return " and ";
+        }
+        return "";
     }
 }
