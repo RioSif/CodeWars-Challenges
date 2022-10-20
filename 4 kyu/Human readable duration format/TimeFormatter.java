@@ -1,5 +1,7 @@
-public class TimeFormatter {
+import java.util.ArrayList;
 
+public class TimeFormatter {
+    public static int count = 0;
     public static String formatDuration(int seconds) {
         // your code goes here
 
@@ -7,78 +9,43 @@ public class TimeFormatter {
             return "now";
         }
 
-        int years = seconds / 31536000;
-        int days = (seconds % 31536000) / 86400;
-        int hours = (seconds % 86400) / 3600;
-        int minutes = (seconds % 3600) / 60;
-        int rseconds = seconds % 60;
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(seconds / 31536000);
+        list.add(seconds % 31536000 / 86400);
+        list.add(seconds % 86400 / 3600);
+        list.add(seconds % 3600 / 60);
+        list.add(seconds % 60);
 
-        int count = 0;
+        ArrayList<String> durationNames = new ArrayList<>();
+        durationNames.add("year");
+        durationNames.add("day");
+        durationNames.add("hour");
+        durationNames.add("minute");
+        durationNames.add("second");
 
-        if (years > 0) {
-            count++;
-        }
-        if (days > 0) {
-            count++;
-        }
-        if (hours > 0) {
-            count++;
-        }
-        if (minutes > 0) {
-            count++;
-        }
-        if (rseconds > 0) {
-            count++;
+
+
+
+        for (Integer listItem: list) {
+            if (listItem > 0) {
+                count++;
+            }
         }
 
         StringBuilder sb = new StringBuilder();
-        if (years > 0) {
-            if (years > 1) {
-                sb.append(years).append(" years");
-            } else {
-                sb.append(years).append(" year");
-            }
-            sb.append(numberOfItems(count));
-            count--;
-        }
-        if (days > 0) {
-            if (days > 1) {
-                sb.append(days).append(" days");
-            } else {
-                sb.append(days).append(" day");
-            }
-            sb.append(numberOfItems(count));
-            count--;
 
-        }
-        if (hours > 0) {
-            if (hours > 1) {
-                sb.append(hours).append(" hours");
-            } else {
-                sb.append(hours).append(" hour");
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) > 0) {
+                if (list.get(i) > 1) {
+                    sb.append(list.get(i) + " ").append(durationNames.get(i)).append("s");
+                } else {
+                    sb.append(list.get(i) + " ").append(durationNames.get(i));
+                }
+                sb.append(numberOfItems(count));
+                count--;
             }
-            sb.append(numberOfItems(count));
-            count--;
         }
-        if (minutes > 0) {
-            if (minutes > 1) {
-                sb.append(minutes).append(" minutes");
-            } else {
-                sb.append(minutes).append(" minute");
-            }
-            sb.append(numberOfItems(count));
-            count--;
-        }
-        if (rseconds > 0) {
-            if (rseconds > 1) {
-                sb.append(rseconds).append(" seconds");
-            } else {
-                sb.append(rseconds).append(" second");
-            }
-            sb.append(numberOfItems(count));
-            count--;
 
-        }
         return sb.toString();
     }
 
