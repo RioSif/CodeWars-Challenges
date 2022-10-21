@@ -1,10 +1,8 @@
 import java.util.ArrayList;
 
 public class TimeFormatter {
-    public static int count = 0;
     public static String formatDuration(int seconds) {
         // your code goes here
-
         if (seconds == 0) {
             return "now";
         }
@@ -23,8 +21,7 @@ public class TimeFormatter {
         durationNames.add("minute");
         durationNames.add("second");
 
-
-
+        int count = 0;
 
         for (Integer listItem: list) {
             if (listItem > 0) {
@@ -45,7 +42,6 @@ public class TimeFormatter {
                 count--;
             }
         }
-
         return sb.toString();
     }
 
